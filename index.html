@@ -6,37 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IMC</title>
     <link rel="stylesheet" href="style.css" />
-
-    <script>
-      const resultado = document.querySelector("#resultado")
-      const altura = document.querySelector("#altura")
-      const peso = document.querySelector("#peso")
-
-      const calcIMC = () => {
-        if (altura.value !== "" && peso.value !== "") {
-          const imc = (peso.value / (altura.value * altura.value)).toFixed(2)
-          let classification = ""
-
-          if (imc < 18.5) {
-            classification = "Abaixo do peso"
-          } else if (imc < 25) {
-            classification = "Peso normal"
-          } else if (imc < 30) {
-            classification = "Acima do peso"
-          } else if (imc < 35) {
-            classification = "Obesidade Grau I"
-          } else if (imc < 41) {
-            classification = "Obesidade Grau II"
-          } else {
-            classification = "Obesidade Grau III"
-          }
-
-          resultado.innerHTML = `IMC: ${imc} (${classification})`
-        } else {
-          resultado.innerHTML = "Preencha os campos"
-        }
-      }
-    </script>
   </head>
   <body>
     <main>
@@ -57,6 +26,36 @@
       <span id="resultado"></span>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+      const resultado = document.querySelector("#resultado")
+      const altura = document.querySelector("#altura")
+      const peso = document.querySelector("#peso")
+
+      const calcIMC = () => {
+        if (altura.value !== "" && peso.value !== "") {
+          const imc = (peso.value / (altura.value * altura.value)).toFixed(2)
+          let classification = ""
+
+          // Magreza < 18,5 kg/m2
+          // Normal entre 18,5 e 25 kg/m2;
+          // Sobrepeso entre 24,9 e 30 kg/m2;
+          // Obesidade > que 30 kg/m2;
+
+          if (imc < 18.5) {
+            classification = "Magreza"
+          } else if (imc < 24.9) {
+            classification = "Normal"
+          } else if (imc < 30) {
+            classification = "Sobrepeso"
+          } else {
+            classification = "Obesidade"
+          }
+
+          resultado.innerHTML = `IMC: ${imc} (${classification})`
+        } else {
+          resultado.innerHTML = "Preencha os campos"
+        }
+      }
+    </script>
   </body>
 </html>
