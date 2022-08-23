@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMC</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script>
+      const resultado = document.querySelector("#resultado")
+      const altura = document.querySelector("#altura")
+      const peso = document.querySelector("#peso")
+
+      const calcIMC = () => {
+        if (altura.value !== "" && peso.value !== "") {
+          const imc = (peso.value / (altura.value * altura.value)).toFixed(2)
+          let classification = ""
+
+          if (imc < 18.5) {
+            classification = "Abaixo do peso"
+          } else if (imc < 25) {
+            classification = "Peso normal"
+          } else if (imc < 30) {
+            classification = "Acima do peso"
+          } else if (imc < 35) {
+            classification = "Obesidade Grau I"
+          } else if (imc < 41) {
+            classification = "Obesidade Grau II"
+          } else {
+            classification = "Obesidade Grau III"
+          }
+
+          resultado.innerHTML = `IMC: ${imc} (${classification})`
+        } else {
+          resultado.innerHTML = "Preencha os campos"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <h2>Cálculo do IMC</h2>
+      <div class="divAltura">
+        <label for="altura">Altura (metros)</label>
+        <input type="number" id="altura" />
+      </div>
+      <div class="divPeso">
+        <label for="peso">Peso (kg)</label>
+        <input type="number" id="peso" />
+      </div>
+
+      <div class="divCalc">
+        <button onclick="calcIMC()">Calcular IMC</button>
+      </div>
+
+      <span id="resultado"></span>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
